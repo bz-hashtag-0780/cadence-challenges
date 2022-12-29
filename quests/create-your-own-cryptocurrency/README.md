@@ -3,9 +3,13 @@
 ## Prerequisites
 
 Make sure you have created a deployer account on Flow testnet
+
 Make sure your deployer account has Flow tokens
+
 Make sure to have [Flow CLI](https://developers.flow.com/tools/flow-cli/install) installed
+
 Mare sure to install Visual Studio Code
+
 Make sure to have Cadence extension installed in Visual Studio Code
 
 ## Write your fungible token (FT) smart contract
