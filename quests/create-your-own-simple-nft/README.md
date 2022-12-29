@@ -1,4 +1,4 @@
-# How to create your own cryptocurrency/token on Flow testnet
+# How to create your own simple NFT contract on Flow testnet
 
 ## Prerequisites
 
@@ -12,38 +12,29 @@ Mare sure to install Visual Studio Code
 
 Make sure to have Cadence extension installed in Visual Studio Code
 
-## Write your fungible token (FT) smart contract
+## Write your NFT smart contract
 
 We are using Flow playground for writing the smart contract
 
-In Flow playground, you can use the ExampleToken contract on account `0x05`
+In Flow playground, you can use the ExampleNFT contract on account `0x04`
 
-https://play.flow.com/1f6d0e44-f487-4eb9-9780-3f3c026cbcf8?type=account&id=7d8c6c4b-8ce8-4d21-9272-8872aa82262e&storage=none
+https://play.flow.com/ff662c89-127e-4b93-a84d-97f2e4adb2ef?type=account&id=c537a46e-c093-41ce-a4e7-7304eb09e2fb&storage=none
 
 ### Step 1: Rename contract
 
-Rename `ExampleToken` to whatever you want
+Rename `ExampleNFT` to whatever you want
 
-Use `CMD+F` or `CTRL+F` and type `ExampleToken` to find all instances. Look out for case sensitivity.
+Use `CMD+F` or `CTRL+F` and type `ExampleNFT` to find all instances. Look out for case sensitivity.
 
-Line 5, 7, 82, 91, 95, 106, 138-146, 200, 205, 228, 237-240, 255
+### Step 2: Change NFT information
 
-### Step 2: Change FT information
+On line 101, 115, 131, 136-138, and 142 you will want to change the NFT information to fit your needs.
 
-On line 121 and 127-133 you will want to change the fungible token information to fit your needs.
-
-![fungible token information](https://i.imgur.com/hG8y3hV.png)
+![NFT information](https://i.imgur.com/bQVeRKm.png)
 
 ### Step 3: Setup your cadence folder
 
-Create a folder with whatever name you want
-
--   Create a subfolder called `cadence` and inside that subfolder create another called `contracts`
-
--   Add your contracts from the Flow playground to your `contracts` folder
-
--   Make sure to change the import paths in each contract
-    ![import paths](https://i.imgur.com/GIMiXZQ.png)
+-   Create a folder with whatever name you want
 
 -   Create flow.json
 
@@ -51,11 +42,18 @@ Open your terminal or powershell and go to your newly created folder
 
 Run the command `flow init` to initialize a flow.json
 
-![flow.json](https://i.imgur.com/ws0YjvK.png)
+![flow.json](https://i.imgur.com/l3C0FCe.png)
+
+-   Create a subfolder called `cadence` and inside that subfolder create another called `contracts`
+
+-   Add your contracts from the Flow playground to your `contracts` folder
+
+-   Make sure to change the import paths in each contract
+    ![import paths](https://i.imgur.com/FQsjFeS.png)
 
 If you have done the above correctly your setup should look like this
 
-![flow setup](https://i.imgur.com/V1qqR2C.png)
+![flow setup](https://i.imgur.com/bqZvgcn.png)
 
 ### Step 4: Configure your flow.json
 
@@ -64,22 +62,8 @@ Replace the code in your flow.json with the following:
 ```json
 {
 	"contracts": {
-		"ExampleToken": "./cadence/contracts/ExampleToken.cdc",
+		"ExampleNFT": "./cadence/contracts/ExampleNFT.cdc",
 
-		"FungibleToken": {
-			"source": "./cadence/contracts/FungibleToken.cdc",
-			"aliases": {
-				"testnet": "0x9a0766d93b6608b7",
-				"mainnet": "0xf233dcee88fe0abe"
-			}
-		},
-		"FungibleTokenMetadataViews": {
-			"source": "./cadence/contracts/FungibleTokenMetadataViews.cdc",
-			"aliases": {
-				"testnet": "0x9a0766d93b6608b7",
-				"mainnet": "0xf233dcee88fe0abe"
-			}
-		},
 		"MetadataViews": {
 			"source": "./cadence/contracts/MetadataViews.cdc",
 			"aliases": {
@@ -120,15 +104,13 @@ Replace the code in your flow.json with the following:
 	"deployments": {
 		"emulator": {
 			"emulator-account": [
-				"FungibleToken",
 				"MetadataViews",
 				"NonFungibleToken",
-				"FungibleTokenMetadataViews",
-				"ExampleToken"
+				"ExampleNFT"
 			]
 		},
 		"testnet": {
-			"testnet-account": ["ExampleToken"]
+			"testnet-account": ["ExampleNFT"]
 		}
 	}
 }
@@ -136,7 +118,7 @@ Replace the code in your flow.json with the following:
 
 -   Replace "ADD YOUR FLOW ADDRESS" with your flow address
 -   Replace "ADD YOUR PRIVATE KEY" with your private key
--   Replace "ExampleToken" with the name you have chosen
+-   Replace "ExampleNFT" with the name you have chosen
     Note: Make sure not to upload your flow.json to github or anywhere online to keep your private key PRIVATE!
 
 ### Step 5: Deploy your contract
@@ -145,4 +127,4 @@ Go to the root folder that has the flow.json and run the command `flow project d
 
 TADA!!
 
-You have now deployed your fungible token contract
+You have now deployed your NFT contract
